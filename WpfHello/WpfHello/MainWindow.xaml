@@ -1,11 +1,28 @@
-﻿<Window x:Class="WpfHello.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="WpfHello.MainWindow"
+        Title="MainWindow" Height="601.282" Width="657.052" FontSize="24">
     <Grid>
         <Label Content="Lütfen adınızı girin" HorizontalAlignment="Left" Margin="31,49,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
         <TextBox x:Name="tbAd" HorizontalAlignment="Left" Height="41" Margin="43,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" FontSize="24"/>
         <Button x:Name="tamam" Content="Tamam" HorizontalAlignment="Left" Margin="301,114,0,0" VerticalAlignment="Top" Width="118" FontSize="24" Height="41" Click="tamam_Click"/>
+        <CheckBox x:Name="cb1" Content="Seçildi mi?" HorizontalAlignment="Left" Margin="69,246,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Button Content="Seçili mi?" HorizontalAlignment="Left" Margin="301,246,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click_1"/>
+        <ListBox x:Name="lb1" HorizontalAlignment="Left" Height="217" Margin="69,327,0,0" VerticalAlignment="Top" Width="196" SelectionChanged="lb1_SelectionChanged">
+            <System:String>Ekmek</System:String>
+            <System:String>Çay</System:String>
+            <System:String>Yoğurt</System:String>
+            <System:String>Süt</System:String>
+            <System:String>Makarna</System:String>
+            <System:String>Et</System:String>
+        </ListBox>
+        <Button Content="Listeye Ekle" HorizontalAlignment="Left" Margin="456,114,0,0" VerticalAlignment="Top" Width="131" Height="41" Click="Button_Click_2"/>
+        <Button Content="Listeden Çıkar" HorizontalAlignment="Left" Margin="421,177,0,0" VerticalAlignment="Top" Width="193" Height="42" Click="Button_Click_3"/>
+        <ListBox x:Name="lb2" HorizontalAlignment="Left" Height="197" Margin="446,327,0,0" VerticalAlignment="Top" Width="168"/>
+        <Button Content="Ekle &gt;&gt;" HorizontalAlignment="Left" Margin="323,349,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_4"/>
+        <Button Content="Sil &lt;&lt;" HorizontalAlignment="Left" Margin="323,420,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_5"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="561,258,-12,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

@@ -29,5 +29,40 @@ namespace WpfHello
         {
             MessageBox.Show("Merhaba " + tbAd.Text);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (cb1.IsChecked == true)
+                MessageBox.Show("Seçili");
+            else
+                MessageBox.Show("Seçili değil");
+        }
+
+        private void lb1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //MessageBox.Show(lb1.SelectedItem + " seçildi");
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            lb1.Items.Add(tbAd.Text);
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            lb1.Items.Remove(lb1.SelectedItem); //
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            lb2.Items.Add(lb1.SelectedItem);
+            lb1.Items.Remove(lb1.SelectedItem);
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            lb1.Items.Add(lb2.SelectedItem);
+            lb2.Items.Remove(lb2.SelectedItem);
+        }
     }
 }
