@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Siniflar
 {
-    class Kisi
+    class Kisi//kişi sınıfı bildirimi
     {
         public string adi;//kişinin adını saklar
-        public string soyadi;
-        public string gozRengi;
-        public int dogumYili;
+        public string soyadi;//soyadı özelliği
+        public string gozRengi;//kişinin göz rengi
+        public int dogumYili;//kişinin doğum yılı
 
         public Kisi()//Varsayılan kurucu metod
         {
-            dogumYili = 1990;
+            dogumYili = 1990;//kurucu metod parametresiz çalıştırıldığında doğum yılını 1990 olarak belirle
         }
 
-        public Kisi(string adi, string soyadi, string gozRengi, int dogumYili)
+        public Kisi(string adi, string soyadi, string gozRengi, int dogumYili)//parametre alan kurucu metod
         {
             this.adi = adi;
             this.soyadi = soyadi;
@@ -26,7 +26,7 @@ namespace Siniflar
             this.dogumYili = dogumYili;
         }
 
-        public void yazdir()
+        public void yazdir()//kişinin bilgilerini yazdıran metod
         {
             //Console.WriteLine("Ben bir kişi sınıfıyım");
             Console.WriteLine("Adım: {0}",adi);
