@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Siniflar
 {
-    class Kisi//kişi sınıfı bildirimi
+    class Kisi //kişi sınıfı bildirimi
     {
         public string adi;//kişinin adını saklar
         public string soyadi;//soyadı özelliği

@@ -30,6 +30,12 @@ namespace Siniflar
             k2.yazdir();//k2 nesnesinin yazdır metodunu çağır
             k3.yazdir();//k3 nesnesinin yazdır metodunu çağır
 
+            Daire d1 = new Daire(10.0);
+            Console.WriteLine("d1'in çevresi:{0} alanı:{1}", d1.cevre(), d1.alan());
+            Daire d2 = new Daire();
+            d2.yaricap = 20;
+            d2.yazdir();
+
         }
     }
 }
