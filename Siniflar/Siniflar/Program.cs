@@ -19,9 +19,15 @@ namespace Siniflar
             k2.soyadi = "Kızılkaya";
             k2.gozRengi = "Kahverengi";
             k2.dogumYili = 1994;
+            Kisi k3 = new Kisi("Burak", "Atalay", "Kahverengi", 1994);//k3 nesnesinin özelliklerini kurucu metod yoluyla belirle
+            Console.WriteLine("{0}'in yaşı {1}", k1.adi, k1.yas());
+            Kisi k4 = new Kisi("Kadir", "Çakır", "Kahverengi", 1951);
+            k1.baba = k4;
+            Kisi k5 = new Kisi("Nazmiye", "Çakır", "Ela", 1953);
+            k1.anne = k5;
+
             k1.yazdir();//k1 nesnesinin yazdır metodunu çağır
             k2.yazdir();//k2 nesnesinin yazdır metodunu çağır
-            Kisi k3 = new Kisi("Burak", "Atalay", "Kahverengi", 1994);//k3 nesnesinin özelliklerini kurucu metod yoluyla belirle
             k3.yazdir();//k3 nesnesinin yazdır metodunu çağır
 
         }

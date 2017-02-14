@@ -12,6 +12,8 @@ namespace Siniflar
         public string soyadi;//soyadı özelliği
         public string gozRengi;//kişinin göz rengi
         public int dogumYili;//kişinin doğum yılı
+        public Kisi anne;
+        public Kisi baba;
 
         public Kisi()//Varsayılan kurucu metod
         {
@@ -33,6 +35,22 @@ namespace Siniflar
             Console.WriteLine("Soyadım: {0}", soyadi);
             Console.WriteLine("Göz rengim: {0}", gozRengi);
             Console.WriteLine("Doğum yılım: {0}", dogumYili);
+            Console.WriteLine("Yaşım: {0}", this.yas());
+            if (anne != null)
+            {
+                Console.WriteLine("Annesi:");
+                anne.yazdir();
+            }
+            if (this.baba != null)
+            {
+                Console.WriteLine("Babası:");
+                baba.yazdir();
+            }
+            Console.WriteLine();
+        }
+        public int yas()
+        {
+            return 2017 - this.dogumYili;
         }
     }
 }
