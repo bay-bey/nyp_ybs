@@ -12,6 +12,8 @@ namespace SiniflarBO
         public string soyad;
         public int dogumYili;
         public string gozRengi;
+        public Kisi anne;
+        public Kisi baba;
 
         public Kisi()
         {
@@ -33,6 +35,22 @@ namespace SiniflarBO
             Console.WriteLine("Soyadım: {0}", soyad);
             Console.WriteLine("Doğum yılım: {0}",dogumYili);
             Console.WriteLine("Göz rengim: {0}", gozRengi);
+            Console.WriteLine("Yaşım: {0}", this.yas());
+            if (baba != null)
+            {
+                Console.WriteLine("Babası: ");
+                baba.yazdir();
+            }
+            if (anne != null)
+            {
+                Console.WriteLine("Annesi: ");
+                anne.yazdir();
+            }
+        }
+
+        public int yas()
+        {
+            return 2017 - this.dogumYili;
         }
     }
 }
