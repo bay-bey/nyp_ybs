@@ -3,7 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
+* Dikdörtgen Sınıfı
+*   Özellikleri
+*    - en
+*    - boy
+*   Metodları
+*    - alan => en*boy
+*    - cevre => 2(en+boy)
+*    - yazdir => en, boy, cevre ve alanı yazdırır
+ */
 namespace DikdortgenBO
 {
     class Dikdortgen
