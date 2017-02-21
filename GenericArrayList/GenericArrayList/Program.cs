@@ -10,7 +10,7 @@ namespace GenericArrayList
     {
         static void Main(string[] args)
         {
-            List<int> l = new List<int>();
+            List<int> l = new List<int>();//Sadece tamsayıların eklenebileceği generic bir liste oluştur
             l.Add(5);
             l.Add(7);
             l.Add(26);
