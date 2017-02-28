@@ -52,7 +52,9 @@ namespace OgrenciPaketleme
             get { return final; }
             set { final = dogruDeger(value); }
         }
-
+        /*
+         * Ortalamaya göre harf notunu geri döndüren özellik
+         */ 
         public string HarfNotu {
             get {
                 if (Ortalama >= 90 && Ortalama <= 100)
