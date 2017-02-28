@@ -19,8 +19,8 @@ namespace OgrenciPaketleme
         /*
          * Ortalamayı hesaplayıp geri döndüren özellik(property)
          */ 
-        public double Ortalama {
-            get { return 0.4 * vize + 0.6 * final; }
+        public int Ortalama {
+            get { return Convert.ToInt32(Math.Round(0.4 * vize + 0.6 * final)); }
         }
         /*
          * Parametre olarak gelen not değeri: 
@@ -51,6 +51,29 @@ namespace OgrenciPaketleme
         {
             get { return final; }
             set { final = dogruDeger(value); }
+        }
+
+        public string HarfNotu {
+            get {
+                if (Ortalama >= 90 && Ortalama <= 100)
+                    return "A1";
+                else if (Ortalama >= 80 && Ortalama < 90)
+                    return "A2";
+                else if (Ortalama >= 75 && Ortalama < 80)
+                    return "B1";
+                else if (Ortalama >= 70 && Ortalama < 75)
+                    return "B2";
+                else if (Ortalama >= 65 && Ortalama < 70)
+                    return "C1";
+                else if (Ortalama >= 60 && Ortalama < 65)
+                    return "C2";
+                else if (Ortalama >= 55 && Ortalama < 60)
+                    return "D1";
+                else if (Ortalama >= 50 && Ortalama < 55)
+                    return "D2";
+                else
+                    return "E";
+            }
         }
     }
 }
