@@ -22,7 +22,10 @@ namespace OkulProjesi
             d1.yazdir();
             Console.WriteLine("d1 toplam eşya fiyatı:{0}",d1.toplamEsyaFiyati());
             Console.WriteLine("d1 eşya fiyatı ortalaması:{0}",d1.esyaFiyatOrtalamasi());
+            //Esya e = d1.enPahaliEsya();
+            //e.yazdir();
             d1.enPahaliEsya().yazdir();//en pahalı eşyanın yazdır metodunu çağır
+            //Derslik d2 = new Derslik();
 
         }
     }
