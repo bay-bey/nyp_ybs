@@ -16,8 +16,7 @@ namespace OgrenciPaketlemeBO
             Console.WriteLine("Final notunu girin: ");
             o1.Final = int.Parse(Console.ReadLine());
             Console.WriteLine("Ortalama: {0}", o1.Ortalama);
-
-
+            Console.WriteLine("Harf Notu: {0}", o1.HafrNotu);
         }
     }
 }
