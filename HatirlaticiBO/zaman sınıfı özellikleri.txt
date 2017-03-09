@@ -1,0 +1,15 @@
+Zaman Sınıfı:
+	Özellikleri:
+		int saat
+		int dakika
+		int saniye
+	Metodları:
+		Zaman(int saat, int dakika, int saniye)
+		Zaman saniyeEkle(int saniye)
+		Zaman zamanEkle(Zaman z)
+		
+Kullanımı:
+Zaman z=new Zaman(10,30,47);
+Zaman z=new Zaman(23,59,285);//saat=>0, dakika=>3, saniye=>45 olmalı
+		
+	
