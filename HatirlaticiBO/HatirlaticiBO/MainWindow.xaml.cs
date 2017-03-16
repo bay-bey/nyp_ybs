@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace HatirlaticiBO
 {
@@ -32,6 +33,20 @@ namespace HatirlaticiBO
             Zaman z3 = new Zaman(01, 10, 25);
             Zaman z2 = z.zamanEkle(z1);
             Zaman z4 = z3.zamanEkle(z);
+        }
+
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            DispatcherTimer dt = new DispatcherTimer();
+            dt.Tick += new EventHandler(labelaZamaniYaz);
+            dt.Interval = new TimeSpan(0, 0, 1);
+            dt.Start();
+        }
+
+        private void labelaZamaniYaz(object sender, RoutedEventArgs e)
+        {
+            Zaman z = new Zaman(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+            lbZaman.Content = z.Saat + ":" + z.Dakika + ":" + z.Saniye;
         }
     }
 }
