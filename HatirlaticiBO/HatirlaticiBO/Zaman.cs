@@ -77,7 +77,10 @@ namespace HatirlaticiBO
         public override bool Equals(object obj)
         {
             Zaman z = (Zaman)obj;
-            return z.Saat==Saat && z.Dakika==Dakika && z.Saniye==Saniye;
+            if (z.Saat == Saat && z.Dakika == Dakika && z.Saniye == Saniye)
+                return true;
+            else
+                return false;
         }
     }
 }

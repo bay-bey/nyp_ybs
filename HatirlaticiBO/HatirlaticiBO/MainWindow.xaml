@@ -1,7 +1,7 @@
 ﻿<Window x:Class="HatirlaticiBO.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="462.821" Width="525" FontSize="24" Loaded="Window_Loaded_1">
+        Title="MainWindow" Height="473.321" Width="510" FontSize="24" Loaded="Window_Loaded_1">
     <Grid>
         <Label Content="Saat" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.487,0.518"/>
         <TextBox x:Name="tbSaat" HorizontalAlignment="Left" Height="37" Margin="63,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43"/>

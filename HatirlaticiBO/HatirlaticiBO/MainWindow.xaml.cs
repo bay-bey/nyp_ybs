@@ -46,13 +46,17 @@ namespace HatirlaticiBO
 
         private void labelaZamaniYaz(object sender, EventArgs e)
         {
-            Zaman z = new Zaman(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-            lbZaman.Content = z.Saat + ":" + z.Dakika + ":" + z.Saniye;
-            foreach (Zaman z2 in lbHatirlatma.Items)
+            Zaman mevcutZaman = new Zaman(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+            lbZaman.Content = mevcutZaman.ToString();
+            foreach (Zaman listedekiZaman in lbHatirlatma.Items)
             {
-                if (z.Equals(z2))
+                if (mevcutZaman.Equals(listedekiZaman))
                 {
-                    (new Thread(() => MessageBox.Show(z2.aciklama))).Start();
+                    (new Thread(() => MessageBox.Show(listedekiZaman.aciklama))).Start();
+                }
+                if (mevcutZaman.saniyeEkle(180).Equals(listedekiZaman))
+                {
+                    (new Thread(() => MessageBox.Show("Hatırlatıcı yaklaşıyor"+listedekiZaman))).Start();
                 }
             }
         }
@@ -67,8 +71,10 @@ namespace HatirlaticiBO
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Zaman z = (Zaman)lbHatirlatma.Items[0];
-            lbHatirlatma.Items.Add(z.saniyeEkle(300));
+            //Zaman z = (Zaman)lbHatirlatma.Items[0];
+            //lbHatirlatma.Items.Add(z.saniyeEkle(300));
+            Zaman z = new Zaman(1, 2, 3);
+            MessageBox.Show("Hatırlatıcı: " + z);
         }
     }
 }
