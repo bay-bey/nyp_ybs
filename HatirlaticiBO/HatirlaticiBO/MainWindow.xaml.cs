@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,10 +44,31 @@ namespace HatirlaticiBO
             dt.Start();
         }
 
-        private void labelaZamaniYaz(object sender, RoutedEventArgs e)
+        private void labelaZamaniYaz(object sender, EventArgs e)
         {
             Zaman z = new Zaman(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
             lbZaman.Content = z.Saat + ":" + z.Dakika + ":" + z.Saniye;
+            foreach (Zaman z2 in lbHatirlatma.Items)
+            {
+                if (z.Equals(z2))
+                {
+                    (new Thread(() => MessageBox.Show(z2.aciklama))).Start();
+                }
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Zaman z = new Zaman(int.Parse(tbSaat.Text), int.Parse(tbDakika.Text), int.Parse(tbSaniye.Text));
+            z.aciklama = tbAciklama.Text;
+            lbHatirlatma.Items.Add(z);
+            
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Zaman z = (Zaman)lbHatirlatma.Items[0];
+            lbHatirlatma.Items.Add(z.saniyeEkle(300));
         }
     }
 }

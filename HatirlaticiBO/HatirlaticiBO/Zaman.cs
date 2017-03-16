@@ -11,6 +11,7 @@ namespace HatirlaticiBO
         private int saat;
         private int dakika;
         private int saniye;
+        public string aciklama;
 
         public int Saat
         {
@@ -67,6 +68,16 @@ namespace HatirlaticiBO
             donecek.Dakika += z.Dakika;
             donecek.Saat += z.Saat;
             return donecek;
+        }
+
+        public override string ToString()
+        {
+            return Saat+":"+Dakika+":"+Saniye+" "+aciklama;
+        }
+        public override bool Equals(object obj)
+        {
+            Zaman z = (Zaman)obj;
+            return z.Saat==Saat && z.Dakika==Dakika && z.Saniye==Saniye;
         }
     }
 }
