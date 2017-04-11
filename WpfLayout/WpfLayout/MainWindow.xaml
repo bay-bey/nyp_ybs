@@ -8,7 +8,7 @@
             <StackPanel DockPanel.Dock="Top">
                 <Menu>
                     <MenuItem Header="_File">
-                        <MenuItem Header="_New" />
+                        <MenuItem Header="_New" Click="MenuItem_Click_1"/>
                         <MenuItem Header="_Open..." />
                         <MenuItem Header="_Save" />
                         <MenuItem Header="Sa_ve As..." />
@@ -246,11 +246,16 @@ Fill="Black" />
                         <RadioButton GroupName="Induction" Content="Unforced"/>
                         <RadioButton GroupName="Induction" Content="Mechanical supercharger"/>
                         <RadioButton GroupName="Induction" Content="Turbocharger"/>
+                        <TextBlock>Arabanın rengi</TextBlock>
+                        <RadioButton Content="Beyaz" IsChecked="True"/>
+                        <RadioButton Content="Bej"/>
+                        <RadioButton Content="Siyah"/>
+                        <RadioButton Content="Gümüş"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Text Kontrolleri" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="96">
                     <StackPanel Orientation="Vertical">
-                        <TextBox Margin="5" VerticalAlignment="Center" Text="Single line textbox" />
+                        <TextBox Margin="5" VerticalAlignment="Center" Text="Single line textbox" MaxLength="20" />
                         <TextBox AcceptsReturn="True" Margin="5" Height="50"
 VerticalScrollBarVisibility="Visible"
 VerticalAlignment="Center" Text="Multiline textbox" />
@@ -271,21 +276,21 @@ AcceptsReturn="True" Text="Yazım denetimi yapılıyar. Hatali kelimelerin alti 
                                 	</InlineUIContainer></TextBlock>
                             </TextBox.ToolTip>
                         </TextBox>
-                        <GroupBox Header="Glass">
+                        <GroupBox Header="Bardak">
                             <Border Margin="2" Background="White" Padding="3">
                                 <StackPanel>
-                                    <RadioButton Content="Half-full" IsChecked="True" />
-                                    <RadioButton Content="Half-empty" />
+                                    <RadioButton Content="Yarısı dolu" IsChecked="True" />
+                                    <RadioButton Content="Yarısı boş" />
                                 </StackPanel>
                             </Border>
                         </GroupBox>
-                        <Expander Header="Glass" IsExpanded="True"
+                        <Expander Header="Bardak" IsExpanded="True"
 Background="#def" VerticalAlignment="Center" MinWidth="90"
 Margin="10,0">
                             <Border Margin="2" Background="White" Padding="3">
                                 <StackPanel>
-                                    <RadioButton Content="Half-full" IsChecked="True" />
-                                    <RadioButton Content="Half-empty" />
+                                    <RadioButton Content="Yarısı Dolu" IsChecked="True" />
+                                    <RadioButton Content="Yarısı Boş" />
                                 </StackPanel>
                             </Border>
                         </Expander>
@@ -369,7 +374,7 @@ DisplayMemberBinding="{Binding XPath=@id}" />
                 </TabItem>
                 <TabItem Header="Image" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="93">
                     <DockPanel>
-                        <Image Source="/wpf.jpg" />
+                        <Image Source="/resimler/wpf.jpg" />
                     </DockPanel>
                 </TabItem>
             </TabControl>
