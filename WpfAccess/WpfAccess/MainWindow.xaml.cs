@@ -22,6 +22,8 @@ namespace WpfAccess
     /// </summary>
     public partial class MainWindow : Window
     {
+        OleDbConnection baglanti;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,14 +31,14 @@ namespace WpfAccess
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\\..\\Okul1.mdb");
+            baglanti = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\\..\\Okul1.mdb");
 
             try
             {
                 baglanti.Open();
 
                 DataSet kume = new DataSet();
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar WHERE DoğumYeri='Denizli'", baglanti);
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);
 
                 da.Fill(kume,"Çalışanlar");
 
@@ -47,10 +49,26 @@ namespace WpfAccess
             catch (OleDbException exc)
             {
                 MessageBox.Show("Bağlantı gerçekleştirilemedi! "+exc.Message);
-                
             }
 
             
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                baglanti.Open();
+                OleDbCommand komut = new OleDbCommand("INSERT INTO Çalışanlar (TCKimlik, Adı, Soyadı) VALUES('98765432108','Şevket','Çakır')", baglanti);
+                komut.ExecuteNonQuery();
+                baglanti.Close();
+            }
+            catch (Exception exc)
+            {
+
+                MessageBox.Show("Eklemede hata: " + exc.Message);
+            }
+
         }
     }
 }
