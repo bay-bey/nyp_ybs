@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WpfAccessOleDbCommandBO.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded_1">
     <DockPanel>
         <TabControl>
             <TabItem Header="Ekleme">
@@ -29,7 +29,7 @@
                     <Label Grid.Row="5" Grid.Column="0" Content="Maaş"/>
                     <Label Grid.Row="6" Grid.Column="0" Content="Doğum Tarihi"/>
                     <Label Grid.Row="7" Grid.Column="0" Content="Doğum Yeri"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" Name="tbTckimlik" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Name="tbTckimlik" PreviewTextInput="tbTckimlik_PreviewTextInput" />
                     <TextBox Grid.Row="1" Grid.Column="1" Name="tbAdi" />
                     <TextBox Grid.Row="2" Grid.Column="1" Name="tbSoyadi" />
                     <TextBox Grid.Row="3" Grid.Column="1" Name="tbBirimi" />
@@ -42,10 +42,51 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Silme">
-
+                <DockPanel>
+                    <Button Content="Seçili Elemanı Sil" DockPanel.Dock="Bottom" Click="Button_Click_2"/>
+                    <DataGrid Name="CalisanlarGrid"/>
+                    
+                </DockPanel>
             </TabItem>
             <TabItem Header="Güncelleme">
+                <StackPanel>
+                    <DataGrid Name="GuncellemeGrid" SelectionChanged="GuncellemeGrid_SelectionChanged"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Tc Kimlik No"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Adı"/>
+                        <Label Grid.Row="2" Grid.Column="0" Content="Soyadı"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Birimi"/>
+                        <Label Grid.Row="4" Grid.Column="0" Content="Giriş Tarihi"/>
+                        <Label Grid.Row="5" Grid.Column="0" Content="Maaş"/>
+                        <Label Grid.Row="6" Grid.Column="0" Content="Doğum Tarihi"/>
+                        <Label Grid.Row="7" Grid.Column="0" Content="Doğum Yeri"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Name="tbTckimlikG" PreviewTextInput="tbTckimlik_PreviewTextInput" IsEnabled="False" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Name="tbAdiG" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Name="tbSoyadiG" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Name="tbBirimiG" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Name="tbGirisTarihiG" />
+                        <TextBox Grid.Row="5" Grid.Column="1" Name="tbMaasG" />
+                        <TextBox Grid.Row="6" Grid.Column="1" Name="tbDogumTarihiG" />
+                        <TextBox Grid.Row="7" Grid.Column="1" Name="tbDogumYeriG" />
+                        <Button Content="Güncelle"  Grid.Row="8" Grid.ColumnSpan="2" Click="Button_Click_3"/>
 
+                    </Grid>
+                </StackPanel>
             </TabItem>
 
         </TabControl>

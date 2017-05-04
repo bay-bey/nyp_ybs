@@ -54,5 +54,107 @@ namespace WpfAccessOleDbCommandBO
                 MessageBox.Show(exc.Message);
             }
         }
+
+        private void tbTckimlik_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, e.Text.Length - 1))
+                e.Handled = true;
+        }
+
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                baglanti.Open();
+                DataSet veriKumesi = new DataSet();
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);
+                da.Fill(veriKumesi, "Çalışanlar");
+                CalisanlarGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
+                GuncellemeGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
+                baglanti.Close();
+            }
+            catch (Exception exc)
+            {
+                if (baglanti.State == ConnectionState.Open)
+                    baglanti.Close();
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var sonuc = MessageBox.Show("Silmek istediğinize emin misiniz?", "Silme onayı", MessageBoxButton.YesNo);
+                if (sonuc == MessageBoxResult.Yes)
+                {
+                    baglanti.Open();
+                    OleDbCommand komut = new OleDbCommand("DELETE FROM Çalışanlar WHERE TCKimlik=@tckimlik", baglanti);
+                    var secili = (DataRowView)CalisanlarGrid.SelectedItem;
+                    komut.Parameters.AddWithValue("@tckimlik", secili[0]);
+                    komut.ExecuteNonQuery();
+
+                    DataSet veriKumesi = new DataSet();
+                    OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);
+                    da.Fill(veriKumesi, "Çalışanlar");
+                    CalisanlarGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
+                    GuncellemeGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
+
+                    baglanti.Close();
+                }
+            }
+            catch (Exception exc)
+            {
+                if (baglanti.State == ConnectionState.Open)
+                    baglanti.Close();
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void GuncellemeGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var secili = (DataRowView)e.AddedItems[0];
+            tbTckimlikG.Text = secili[0].ToString();
+            tbAdiG.Text = secili[1].ToString();
+            tbSoyadiG.Text = secili[2].ToString();
+            tbBirimiG.Text = secili[3].ToString();
+            tbGirisTarihiG.Text = secili[4].ToString();
+            tbMaasG.Text = secili[5].ToString();
+            tbDogumTarihiG.Text = secili[6].ToString();
+            tbDogumYeriG.Text = secili[7].ToString();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                baglanti.Open();
+                String sql = "UPDATE Çalışanlar SET Adı=@adi,Soyadı=@soyadi,Birimi=@birimi,DoğumYeri=@dogumyeri,GirişTarihi=@giristarihi,DoğumTarihi=@dogumtarihi,Maaşı=@maas WHERE TCKimlik=@tckimlik";
+                OleDbCommand komut = new OleDbCommand(sql, baglanti);
+                komut.Parameters.AddWithValue("@tckimlik", tbTckimlikG.Text);
+                komut.Parameters.AddWithValue("@adi", tbAdiG.Text);
+                komut.Parameters.AddWithValue("@soyadi", tbSoyadiG.Text);
+                komut.Parameters.AddWithValue("@birimi", tbBirimiG.Text);
+                komut.Parameters.AddWithValue("@giristarihi", tbGirisTarihiG.Text);
+                komut.Parameters.AddWithValue("@maas", tbMaasG.Text);
+                komut.Parameters.AddWithValue("@dogumtarihi", tbDogumTarihiG.Text);
+                komut.Parameters.AddWithValue("@dogumyeri", tbDogumYeriG.Text);
+                komut.ExecuteNonQuery();
+
+                DataSet veriKumesi = new DataSet();
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);
+                da.Fill(veriKumesi, "Çalışanlar");
+                CalisanlarGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
+                GuncellemeGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
+
+                baglanti.Close();
+            }
+            catch (Exception exc)
+            {
+                if (baglanti.State == ConnectionState.Open)
+                    baglanti.Close();
+                MessageBox.Show(exc.Message);
+            }
+        }
     }
 }
