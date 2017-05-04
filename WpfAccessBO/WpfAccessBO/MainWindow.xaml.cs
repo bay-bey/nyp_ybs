@@ -22,6 +22,7 @@ namespace WpfAccessBO
     /// </summary>
     public partial class MainWindow : Window
     {
+        OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=OkulBO.mdb");
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace WpfAccessBO
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=OkulBO.mdb");
+            
             try
             {
                 baglanti.Open();
@@ -45,6 +46,21 @@ namespace WpfAccessBO
                 MessageBox.Show("Veritabanı bağlantısı oluşturulamadı: "+exc.Message);
             }
 
+        }
+
+        private void OleDbDene_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                baglanti.Open();
+                OleDbCommand komut = new OleDbCommand("INSERT INTO Çalışanlar (TCKimlik,Adı,Soyadı) VALUES('98765432101','Şevket','Çakır')",baglanti);
+                komut.ExecuteNonQuery();
+                baglanti.Close();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
     }
 }

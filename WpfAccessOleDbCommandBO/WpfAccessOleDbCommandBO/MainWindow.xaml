@@ -1,0 +1,53 @@
+﻿<Window x:Class="WpfAccessOleDbCommandBO.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <DockPanel>
+        <TabControl>
+            <TabItem Header="Ekleme">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Tc Kimlik No"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Adı"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Soyadı"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Birimi"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Giriş Tarihi"/>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Maaş"/>
+                    <Label Grid.Row="6" Grid.Column="0" Content="Doğum Tarihi"/>
+                    <Label Grid.Row="7" Grid.Column="0" Content="Doğum Yeri"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Name="tbTckimlik" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Name="tbAdi" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Name="tbSoyadi" />
+                    <TextBox Grid.Row="3" Grid.Column="1" Name="tbBirimi" />
+                    <TextBox Grid.Row="4" Grid.Column="1" Name="tbGirisTarihi" />
+                    <TextBox Grid.Row="5" Grid.Column="1" Name="tbMaas" />
+                    <TextBox Grid.Row="6" Grid.Column="1" Name="tbDogumTarihi" />
+                    <TextBox Grid.Row="7" Grid.Column="1" Name="tbDogumYeri" />
+                    <Button Content="Ekle"  Grid.Row="8" Grid.ColumnSpan="2" Click="Button_Click_1"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Silme">
+
+            </TabItem>
+            <TabItem Header="Güncelleme">
+
+            </TabItem>
+
+        </TabControl>
+    </DockPanel>
+</Window>
