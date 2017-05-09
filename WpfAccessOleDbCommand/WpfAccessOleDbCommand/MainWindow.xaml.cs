@@ -176,5 +176,28 @@ namespace WpfAccessOleDbCommand
                 MessageBox.Show(exc.Message);
             }
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                baglanti.Open();
+                String sql = "SELECT * FROM Çalışanlar WHERE Adı LIKE '" + tbSorgula.Text + "%'";
+                //MessageBox.Show(sql);
+                //OleDbCommand komut = new OleDbCommand("SELECT * FROM Çalışanlar WHERE Adı LIKE '@adi%'", baglanti);
+                //komut.Parameters.AddWithValue("@adi", tbSorgula.Text);
+                DataSet kume = new DataSet();
+                OleDbDataAdapter da = new OleDbDataAdapter(sql, baglanti);
+
+                da.Fill(kume, "Çalışanlar");
+                sorgulaGrid.ItemsSource = kume.Tables["Çalışanlar"].DefaultView;
+                
+                baglanti.Close();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
     }
 }
