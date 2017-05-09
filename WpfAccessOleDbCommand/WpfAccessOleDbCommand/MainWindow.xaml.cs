@@ -83,6 +83,7 @@ namespace WpfAccessOleDbCommand
                 da.Fill(kume, "Çalışanlar");//Verileri veri tabanından DataSet içindeki "Çalışanlar" tablosuna yükle
 
                 izgara.ItemsSource = kume.Tables["Çalışanlar"].DefaultView;//DataGrid bileşeninin veri kaynağı olarak DataSet'in tablolarından "Çalışanlar" tablosunu göster
+                guncelleGrid.ItemsSource = kume.Tables["Çalışanlar"].DefaultView;
 
                 baglanti.Close();
             }

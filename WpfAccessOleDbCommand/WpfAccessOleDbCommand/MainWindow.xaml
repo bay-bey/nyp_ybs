@@ -46,7 +46,45 @@
                     <DataGrid Name="izgara"></DataGrid>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Güncelleme"></TabItem>
+            <TabItem Header="Güncelleme">
+                <StackPanel>
+                    <DataGrid Name="guncelleGrid"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Content="TC Kimlik Numarası"/>
+                        <Label Grid.Column="0" Grid.Row="1" Content="Adı"/>
+                        <Label Grid.Column="0" Grid.Row="2" Content="Soyadı"/>
+                        <Label Grid.Column="0" Grid.Row="3" Content="Birimi"/>
+                        <Label Grid.Column="0" Grid.Row="4" Content="Giriş Tarihi"/>
+                        <Label Grid.Column="0" Grid.Row="5" Content="Maaş"/>
+                        <Label Grid.Column="0" Grid.Row="6" Content="Doğum Tarihi"/>
+                        <Label Grid.Column="0" Grid.Row="7" Content="Doğum Yeri"/>
+                        <TextBox Grid.Column="1" Grid.Row="0" Name="tbTCKimlikG" />
+                        <TextBox Grid.Column="1" Grid.Row="1" Name="tbAdiG" />
+                        <TextBox Grid.Column="1" Grid.Row="2" Name="tbSoyadiG" />
+                        <TextBox Grid.Column="1" Grid.Row="3" Name="tbBirimiG" />
+                        <TextBox Grid.Column="1" Grid.Row="4" Name="tbGirisTarihiG" />
+                        <TextBox Grid.Column="1" Grid.Row="5" Name="tbMaasG" />
+                        <TextBox Grid.Column="1" Grid.Row="6" Name="tbDogumTarihiG" />
+                        <TextBox Grid.Column="1" Grid.Row="7" Name="tbDogumYeriG" />
+                        <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Güncelle"/>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
