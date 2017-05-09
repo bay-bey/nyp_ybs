@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WpfAccessOleDbCommand.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Access Çalışanlar Veri Tabanı Bağlantısı" Height="350" Width="525" Loaded="Window_Loaded_1">
+        Title="Access Çalışanlar Veri Tabanı Bağlantısı" Height="500" Width="650" Loaded="Window_Loaded_1">
     <DockPanel>
         <TabControl>
             <TabItem Header="Ekleme">
@@ -48,7 +48,7 @@
             </TabItem>
             <TabItem Header="Güncelleme">
                 <StackPanel>
-                    <DataGrid Name="guncelleGrid"/>
+                    <DataGrid Name="guncelleGrid" SelectionChanged="guncelleGrid_SelectionChanged"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -73,7 +73,7 @@
                         <Label Grid.Column="0" Grid.Row="5" Content="Maaş"/>
                         <Label Grid.Column="0" Grid.Row="6" Content="Doğum Tarihi"/>
                         <Label Grid.Column="0" Grid.Row="7" Content="Doğum Yeri"/>
-                        <TextBox Grid.Column="1" Grid.Row="0" Name="tbTCKimlikG" />
+                        <TextBox Grid.Column="1" Grid.Row="0" Name="tbTCKimlikG" IsEnabled="False" />
                         <TextBox Grid.Column="1" Grid.Row="1" Name="tbAdiG" />
                         <TextBox Grid.Column="1" Grid.Row="2" Name="tbSoyadiG" />
                         <TextBox Grid.Column="1" Grid.Row="3" Name="tbBirimiG" />
@@ -81,7 +81,7 @@
                         <TextBox Grid.Column="1" Grid.Row="5" Name="tbMaasG" />
                         <TextBox Grid.Column="1" Grid.Row="6" Name="tbDogumTarihiG" />
                         <TextBox Grid.Column="1" Grid.Row="7" Name="tbDogumYeriG" />
-                        <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Güncelle"/>
+                        <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Güncelle" Click="Button_Click_1"/>
                     </Grid>
                 </StackPanel>
             </TabItem>

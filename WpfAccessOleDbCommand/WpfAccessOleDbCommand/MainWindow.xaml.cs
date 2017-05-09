@@ -32,6 +32,28 @@ namespace WpfAccessOleDbCommand
             InitializeComponent();
         }
 
+        public void verileriCek()
+        {
+            try
+            {
+                baglanti.Open();
+
+                DataSet kume = new DataSet();//DataSet nesnesini oluştur
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);//DataAdapter nesnesini oluştur(sql ifadesini belirterek)
+                da.Fill(kume, "Çalışanlar");//Verileri veri tabanından DataSet içindeki "Çalışanlar" tablosuna yükle
+
+                izgara.ItemsSource = kume.Tables["Çalışanlar"].DefaultView;//DataGrid bileşeninin veri kaynağı olarak DataSet'in tablolarından "Çalışanlar" tablosunu göster
+                guncelleGrid.ItemsSource = kume.Tables["Çalışanlar"].DefaultView;
+
+                baglanti.Close();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+
+        }
+
         private void Ekle_Click(object sender, RoutedEventArgs e)
         {
             try//Hata yakalamak için try-catch blokları kullanıldı. Bu sayede program beklemediğimiz şekilde sonlanmıyor.
@@ -74,23 +96,7 @@ namespace WpfAccessOleDbCommand
          */
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                baglanti.Open();
-
-                DataSet kume = new DataSet();//DataSet nesnesini oluştur
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);//DataAdapter nesnesini oluştur(sql ifadesini belirterek)
-                da.Fill(kume, "Çalışanlar");//Verileri veri tabanından DataSet içindeki "Çalışanlar" tablosuna yükle
-
-                izgara.ItemsSource = kume.Tables["Çalışanlar"].DefaultView;//DataGrid bileşeninin veri kaynağı olarak DataSet'in tablolarından "Çalışanlar" tablosunu göster
-                guncelleGrid.ItemsSource = kume.Tables["Çalışanlar"].DefaultView;
-
-                baglanti.Close();
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
+            verileriCek();
         }
 
         private void sil_Click(object sender, RoutedEventArgs e)
@@ -112,12 +118,58 @@ namespace WpfAccessOleDbCommand
                     komut.ExecuteNonQuery();
                 }
                 //Verileri DataGrid'e(izgara) yeniden yükle
-                DataSet kume = new DataSet();
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);
-                da.Fill(kume, "Çalışanlar");
-                izgara.ItemsSource = kume.Tables["Çalışanlar"].DefaultView;
+                verileriCek();
 
                 baglanti.Close();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void guncelleGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var secili = (DataRowView)guncelleGrid.SelectedItem;
+                tbTCKimlikG.Text = secili[0].ToString();
+                tbAdiG.Text = secili[1].ToString();
+                tbSoyadiG.Text = secili[2].ToString();
+                tbBirimiG.Text = secili[3].ToString();
+                tbGirisTarihiG.Text = secili[4].ToString();
+                tbMaasG.Text = secili[5].ToString();
+                tbDogumTarihiG.Text = secili[6].ToString();
+                tbDogumYeriG.Text = secili[7].ToString();
+
+            }
+            catch (Exception exc) 
+            {
+                
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                baglanti.Open();
+                String sql = "UPDATE Çalışanlar SET Adı=@adi, Soyadı=@soyadi, Birimi=@birimi, GirişTarihi=@giristarihi, Maaş=@maas, DoğumTarihi=@dogumtarihi, DoğumYeri=@doğumyeri WHERE TCKimlik=@tckimlik";
+                OleDbCommand komut = new OleDbCommand(sql, baglanti);
+                
+                komut.Parameters.AddWithValue("@adi", tbAdiG.Text);
+                komut.Parameters.AddWithValue("@soyadi", tbSoyadiG.Text);
+                komut.Parameters.AddWithValue("@birimi", tbBirimiG.Text);
+                komut.Parameters.AddWithValue("@giristarihi", tbGirisTarihiG.Text);
+                komut.Parameters.AddWithValue("@maas", tbMaasG.Text);
+                komut.Parameters.AddWithValue("@dogumtarihi", tbDogumTarihiG.Text);
+                komut.Parameters.AddWithValue("@dogumyeri", tbDogumYeriG.Text);
+                komut.Parameters.AddWithValue("@tckimlik", tbTCKimlikG.Text);
+
+                komut.ExecuteNonQuery();
+
+                baglanti.Close();
+                verileriCek();
             }
             catch (Exception exc)
             {
