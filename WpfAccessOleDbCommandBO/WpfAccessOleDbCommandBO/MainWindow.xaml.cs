@@ -22,7 +22,7 @@ namespace WpfAccessOleDbCommandBO
     /// </summary>
     public partial class MainWindow : Window
     {
-        OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=OkulBO.mdb");
+        OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=../../OkulBO.mdb");
 
         public void verileriCek()
         {
