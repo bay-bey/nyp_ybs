@@ -23,6 +23,29 @@ namespace WpfAccessOleDbCommandBO
     public partial class MainWindow : Window
     {
         OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=OkulBO.mdb");
+
+        public void verileriCek()
+        {
+            try
+            {
+                baglanti.Open();
+                DataSet veriKumesi = new DataSet();
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);
+                da.Fill(veriKumesi, "Çalışanlar");
+                CalisanlarGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
+                GuncellemeGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
+                baglanti.Close();
+            }
+            catch (Exception exc)
+            {
+                if (baglanti.State == ConnectionState.Open)
+                    baglanti.Close();
+                MessageBox.Show(exc.Message);
+            }
+
+        }
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,8 +67,8 @@ namespace WpfAccessOleDbCommandBO
                 komut.Parameters.AddWithValue("@dogumyeri", tbDogumYeri.Text);
 
                 komut.ExecuteNonQuery();
-
                 baglanti.Close();
+                verileriCek();
             }
             catch (Exception exc)
             {
@@ -63,22 +86,7 @@ namespace WpfAccessOleDbCommandBO
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                baglanti.Open();
-                DataSet veriKumesi = new DataSet();
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);
-                da.Fill(veriKumesi, "Çalışanlar");
-                CalisanlarGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
-                GuncellemeGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
-                baglanti.Close();
-            }
-            catch (Exception exc)
-            {
-                if (baglanti.State == ConnectionState.Open)
-                    baglanti.Close();
-                MessageBox.Show(exc.Message);
-            }
+            verileriCek();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -93,14 +101,8 @@ namespace WpfAccessOleDbCommandBO
                     var secili = (DataRowView)CalisanlarGrid.SelectedItem;
                     komut.Parameters.AddWithValue("@tckimlik", secili[0]);
                     komut.ExecuteNonQuery();
-
-                    DataSet veriKumesi = new DataSet();
-                    OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);
-                    da.Fill(veriKumesi, "Çalışanlar");
-                    CalisanlarGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
-                    GuncellemeGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
-
                     baglanti.Close();
+                    verileriCek();
                 }
             }
             catch (Exception exc)
@@ -113,15 +115,22 @@ namespace WpfAccessOleDbCommandBO
 
         private void GuncellemeGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var secili = (DataRowView)e.AddedItems[0];
-            tbTckimlikG.Text = secili[0].ToString();
-            tbAdiG.Text = secili[1].ToString();
-            tbSoyadiG.Text = secili[2].ToString();
-            tbBirimiG.Text = secili[3].ToString();
-            tbGirisTarihiG.Text = secili[4].ToString();
-            tbMaasG.Text = secili[5].ToString();
-            tbDogumTarihiG.Text = secili[6].ToString();
-            tbDogumYeriG.Text = secili[7].ToString();
+            try
+            {
+                var secili = (DataRowView)GuncellemeGrid.SelectedItem;
+                tbTckimlikG.Text = secili[0].ToString();
+                tbAdiG.Text = secili[1].ToString();
+                tbSoyadiG.Text = secili[2].ToString();
+                tbBirimiG.Text = secili[3].ToString();
+                tbGirisTarihiG.Text = secili[4].ToString();
+                tbMaasG.Text = secili[5].ToString();
+                tbDogumTarihiG.Text = secili[6].ToString();
+                tbDogumYeriG.Text = secili[7].ToString();
+
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -129,9 +138,10 @@ namespace WpfAccessOleDbCommandBO
             try
             {
                 baglanti.Open();
-                String sql = "UPDATE Çalışanlar SET Adı=@adi,Soyadı=@soyadi,Birimi=@birimi,DoğumYeri=@dogumyeri,GirişTarihi=@giristarihi,DoğumTarihi=@dogumtarihi,Maaşı=@maas WHERE TCKimlik=@tckimlik";
+                String sql = "UPDATE Çalışanlar SET Adı=@adi, Soyadı=@soyadi, Birimi=@birimi, GirişTarihi=@giristarihi, Maaşı=@maas, DoğumTarihi=@dogumtarihi, DoğumYeri=@dogumyeri WHERE TCKimlik=@tckimlik";
+                //String sql = "UPDATE Çalışanlar SET Adı=@adi, Soyadı=@soyadi, Birimi=@birimi, GirişTarihi=@giristarihi, Maaş=@maas, DoğumTarihi=@dogumtarihi, DoğumYeri=@doğumyeri WHERE TCKimlik=@tckimlik";
                 OleDbCommand komut = new OleDbCommand(sql, baglanti);
-                komut.Parameters.AddWithValue("@tckimlik", tbTckimlikG.Text);
+                
                 komut.Parameters.AddWithValue("@adi", tbAdiG.Text);
                 komut.Parameters.AddWithValue("@soyadi", tbSoyadiG.Text);
                 komut.Parameters.AddWithValue("@birimi", tbBirimiG.Text);
@@ -139,15 +149,11 @@ namespace WpfAccessOleDbCommandBO
                 komut.Parameters.AddWithValue("@maas", tbMaasG.Text);
                 komut.Parameters.AddWithValue("@dogumtarihi", tbDogumTarihiG.Text);
                 komut.Parameters.AddWithValue("@dogumyeri", tbDogumYeriG.Text);
+                komut.Parameters.AddWithValue("@tckimlik", tbTckimlikG.Text);
                 komut.ExecuteNonQuery();
-
-                DataSet veriKumesi = new DataSet();
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Çalışanlar", baglanti);
-                da.Fill(veriKumesi, "Çalışanlar");
-                CalisanlarGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
-                GuncellemeGrid.ItemsSource = veriKumesi.Tables["Çalışanlar"].DefaultView;
-
                 baglanti.Close();
+
+                verileriCek();
             }
             catch (Exception exc)
             {
