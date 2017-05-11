@@ -162,5 +162,26 @@ namespace WpfAccessOleDbCommandBO
                 MessageBox.Show(exc.Message);
             }
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                baglanti.Open();
+                String sql = "SELECT * FROM Çalışanlar WHERE Adı LIKE '" + tbSorgula.Text + "%'";
+                DataSet kume = new DataSet();
+                OleDbDataAdapter da = new OleDbDataAdapter(sql, baglanti);
+                da.Fill(kume, "Çalışanlar");
+                sorgulaGrid.ItemsSource = kume.Tables["Çalışanlar"].DefaultView;
+                //MessageBox.Show(sql);
+                baglanti.Close();
+            }
+            catch (Exception exc)
+            {
+                if (baglanti.State == ConnectionState.Open)
+                    baglanti.Close();
+                MessageBox.Show(exc.Message);
+            }
+        }
     }
 }

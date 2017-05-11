@@ -88,7 +88,17 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
+            <TabItem Header="Sorgula">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <Label Content="Adı giriniz"/>
+                        <TextBox Name="tbSorgula" Width="100"/>
+                        <Button Content="Ara" Click="Button_Click_4"/>
+                    </StackPanel>
+                    <DataGrid Name="sorgulaGrid"/>
 
+                </DockPanel>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
